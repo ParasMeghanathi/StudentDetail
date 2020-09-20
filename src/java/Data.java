@@ -55,9 +55,10 @@ public class Data extends HttpServlet {
               String e1=request.getParameter("email");
             
             try {
-           Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student","root","");
-           
+           Class.forName("oracle.jdbc.driver.OracleDriver");
+            //con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student","root","");
+            con=DriverManager.getConnection("jdbc:oracle:thin:@student.cmh94zidvyek.us-east-1.rds.amazonaws.com:1521:DATABASE","student","Student123");
+                
              st=con.createStatement();
         
           
@@ -72,7 +73,7 @@ public class Data extends HttpServlet {
               
                out.println("<h3>Data Of Student<h3><br><br>");
              String qry="INSERT INTO data (name,contact,email) VALUES ('"+nm+"','"+c+"','"+e1+"')";   
-           //String sqll1=" INSERT INTO data (name,contact,email) VALUES ('a','11','mail')";
+         
              
             try {         
                 pst=con.prepareStatement(qry);
